@@ -19,7 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   String _email = "", _password = "", _name = "", _phone = "";
   bool _rememberMe = false;
-  bool _validate = false;
+  bool _validate1 = false, _validate2 = false, _validate3 = false, _validate4 = false;
   bool _termcondition = false;
   bool _passwordVisible = false;
 
@@ -95,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           icon: Icon(Icons.person),
                           hintText: 'e.g: nasfos84',
                           errorText:
-                              _validate ? 'This field is compulsory' : null,
+                              _validate1 ? 'This field is compulsory' : null,
                         ),
                         textInputAction: TextInputAction.next,
                         // validator: (){}
@@ -108,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           icon: Icon(Icons.email),
                           hintText: 'e.g: nasfos84@gmail.com',
                           errorText:
-                              _validate ? 'This field is compulsory' : null,
+                              _validate2 ? 'This field is compulsory' : null,
                         ),
                         textInputAction: TextInputAction.next,
                       ),
@@ -120,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           icon: Icon(Icons.phone),
                           hintText: 'e.g: 0xxxxxxxxx',
                           errorText:
-                              _validate ? 'This field is compulsory' : null,
+                              _validate3 ? 'This field is compulsory' : null,
                         ),
                         textInputAction: TextInputAction.next,
                       ),
@@ -143,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             },
                           ),
                           errorText:
-                              _validate ? 'This field is compulsory' : null,
+                              _validate4 ? 'This field is compulsory' : null,
                         ),
                         obscureText: _passwordVisible,
                         textInputAction: TextInputAction.done,
@@ -201,18 +201,18 @@ class _RegisterPageState extends State<RegisterPage> {
                                   elevation: 15,
                                   onPressed: () {
                                     setState(() {
-                                      // _emcontroller.text.isEmpty
-                                      //     ? _validate = true
-                                      //     : _validate = false;
-                                      // _passcontroller.text.isEmpty
-                                      //     ? _validate = true
-                                      //     : _validate = false;
-                                      // _phcontroller.text.isEmpty
-                                      //     ? _validate = true
-                                      //     : _validate = false;
-                                      // _namecontroller.text.isEmpty
-                                      //     ? _validate = true
-                                      //     : _validate = false;
+                                      _emcontroller.text.isEmpty
+                                          ? _validate2 = true
+                                          : _validate2 = false;
+                                      _passcontroller.text.isEmpty
+                                          ? _validate4 = true
+                                          : _validate4 = false;
+                                      _phcontroller.text.isEmpty
+                                          ? _validate3 = true
+                                          : _validate3 = false;
+                                      _namecontroller.text.isEmpty
+                                          ? _validate1 = true
+                                          : _validate1 = false;
 
                                       if (_emcontroller.text.isNotEmpty &&
                                           _passcontroller.text.isNotEmpty &&
@@ -292,6 +292,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Text('Yes'),
                   onPressed: () {
                     _onRegister();
+                    Navigator.of(context).pop();
                   },
                 )
               ],
@@ -304,7 +305,19 @@ class _RegisterPageState extends State<RegisterPage> {
     _password = _passcontroller.text;
     _phone = _phcontroller.text;
 
-    if (!validateEmail(_email) && !validatePassword(_password)) {
+    // if (!validateEmail(_email) && !validatePassword(_password)) {
+    //     print('success validate email');
+    //     // print(validateEmail);
+    //     Toast.show(
+    //       "Check your email/password",
+    //       context,
+    //       duration: Toast.LENGTH_LONG,
+    //       gravity: Toast.TOP,
+    //     );
+    //     return;
+    //   }
+    if (_termcondition) {
+      if (!validateEmail(_email) && !validatePassword(_password)) {
         print('success validate email');
         // print(validateEmail);
         Toast.show(
@@ -315,7 +328,6 @@ class _RegisterPageState extends State<RegisterPage> {
         );
         return;
       }
-    if (_termcondition) {
       
       ProgressDialog pr = new ProgressDialog(context,
           type: ProgressDialogType.Normal, isDismissible: false);
