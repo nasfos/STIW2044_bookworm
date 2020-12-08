@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'BOOKWORM',
       theme: new ThemeData(
         primarySwatch: Colors.orange,
-        fontFamily: 'Gill Sans Ultra Bold',
+        // fontFamily: 'Gill Sans Ultra Bold',
       ),
       home: Scaffold(
         body: Container(
