@@ -19,7 +19,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
   String _email = "", _password = "", _name = "", _phone = "";
   bool _rememberMe = false;
-  bool _validate1 = false, _validate2 = false, _validate3 = false, _validate4 = false;
+  bool _validate1 = false,
+      _validate2 = false,
+      _validate3 = false,
+      _validate4 = false;
   bool _termcondition = false;
   bool _passwordVisible = false;
 
@@ -97,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           errorText:
                               _validate1 ? 'This field is compulsory' : null,
                         ),
-                        textInputAction: TextInputAction.next,
+                        // textInputAction: TextInputAction.next,
                         // validator: (){}
                       ),
                       TextField(
@@ -110,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           errorText:
                               _validate2 ? 'This field is compulsory' : null,
                         ),
-                        textInputAction: TextInputAction.next,
+                        // textInputAction: TextInputAction.next,
                       ),
                       TextField(
                         controller: _phcontroller,
@@ -122,12 +125,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           errorText:
                               _validate3 ? 'This field is compulsory' : null,
                         ),
-                        textInputAction: TextInputAction.next,
+                        // textInputAction: TextInputAction.next,
                       ),
                       TextField(
                         controller: _passcontroller,
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'Password (min 8 character)',
+                          hintText: 'Abcde123',
                           icon: Icon(Icons.lock),
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -146,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               _validate4 ? 'This field is compulsory' : null,
                         ),
                         obscureText: _passwordVisible,
-                        textInputAction: TextInputAction.done,
+                        // textInputAction: TextInputAction.done,
                       ),
                       SizedBox(
                         height: 10,
@@ -291,8 +295,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 FlatButton(
                   child: Text('Yes'),
                   onPressed: () {
-                    _onRegister();
                     Navigator.of(context).pop();
+                    _onRegister();
+                    // Navigator.of(context).pop();
                   },
                 )
               ],
@@ -304,32 +309,12 @@ class _RegisterPageState extends State<RegisterPage> {
     _email = _emcontroller.text;
     _password = _passcontroller.text;
     _phone = _phcontroller.text;
-
-    // if (!validateEmail(_email) && !validatePassword(_password)) {
-    //     print('success validate email');
-    //     // print(validateEmail);
-    //     Toast.show(
-    //       "Check your email/password",
-    //       context,
-    //       duration: Toast.LENGTH_LONG,
-    //       gravity: Toast.TOP,
-    //     );
-    //     return;
-    //   }
+    print('_onRegister()');
     if (_termcondition) {
-      if (!validateEmail(_email) && !validatePassword(_password)) {
-        print('success validate email');
+      if (validateEmail(_email) && validatePassword(_password)) {
+        print('success validate email & password');
         // print(validateEmail);
-        Toast.show(
-          "Check your email/password",
-          context,
-          duration: Toast.LENGTH_LONG,
-          gravity: Toast.TOP,
-        );
-        return;
-      }
-      
-      ProgressDialog pr = new ProgressDialog(context,
+         ProgressDialog pr = new ProgressDialog(context,
           type: ProgressDialogType.Normal, isDismissible: false);
       pr.style(message: "Registration...");
       await pr.show();
@@ -341,7 +326,7 @@ class _RegisterPageState extends State<RegisterPage> {
             "phone": _phone,
             "password": _password,
           }).then((res) {
-        print(res.body);
+        print(res.body+"test");
         if (res.body == "success") {
           Toast.show(
             "Registration success.",
@@ -365,6 +350,13 @@ class _RegisterPageState extends State<RegisterPage> {
         print(err);
       });
       await pr.hide();
+    } else Toast.show(
+        "Please check you email & password",
+        context,
+        duration: Toast.LENGTH_LONG,
+        gravity: Toast.TOP,
+      );
+
     } else {
       print('not register');
       Toast.show(
@@ -374,7 +366,10 @@ class _RegisterPageState extends State<RegisterPage> {
         gravity: Toast.TOP,
       );
     }
-  }
+      }
+
+    
+  
 
   void savepref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -386,6 +381,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   bool validateEmail(String email) {
+    print('validateEmail');
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
@@ -393,9 +389,24 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   bool validatePassword(String password) {
-    String pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
-    RegExp regExp = new RegExp(pattern);
-    return regExp.hasMatch(password);
+    print('validatePassword');
+    int minLength=8;
+    bool hasUppercase = password.contains(new RegExp(r'^(?=.*?[A-Z])'));
+    bool hasDigits = password.contains(new RegExp(r'^(?=.*?[0-9])'));
+    bool hasLowercase = password.contains(new RegExp(r'^(?=.*?[a-z])'));
+    // String passpattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
+    bool hasMinLength = password.length >= minLength;
+    // Pattern pattern = new Pattern.compile(passpattern);
+    // RegExp regExp = new RegExp(passpattern);
+    // return regExp.hasMatch(password);
+    if(hasDigits == true  && hasUppercase == true  && hasLowercase == true  && hasMinLength == true ){
+      print('alltrue');
+      return true;
+    } else {
+      print('not alltrue');
+      return false;
+    }
+    
   }
 
   void _onChange1(bool value) {
