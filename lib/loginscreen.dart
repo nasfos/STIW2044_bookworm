@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:progress_dialog/progress_dialog.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
-// import 'main.dart';
+import 'main.dart';
 import 'registerscreen.dart';
-// import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -153,36 +153,36 @@ class _LoginPageState extends State<LoginPage> {
 
     print(_email+','+ _password);
 
-    // ProgressDialog pr = new ProgressDialog(context,
-    //     type: ProgressDialogType.Normal, isDismissible: false);
-    // pr.style(message: "Login...");
-    // await pr.show();
-    // http.post("http://middleton.000webhostapp.com/stiw2044/php/login_user.php", body: {
-    //   "email": _email,
-    //   "password": _password,
-    // }).then((res) {
-    //   print(res.body);
-    //   if (res.body == "success") {
-    //     Toast.show(
-    //       "Login Succes",
-    //       context,
-    //       duration: Toast.LENGTH_LONG,
-    //       gravity: Toast.TOP,
-    //     );
-    //     Navigator.push(context,
-    //         MaterialPageRoute(builder: (BuildContext context) => MainScreen()));
-    //   } else {
-    //     Toast.show(
-    //       "Login failed",
-    //       context,
-    //       duration: Toast.LENGTH_LONG,
-    //       gravity: Toast.TOP,
-    //     );
-    //   }
-    // }).catchError((err) {
-    //   print(err);
-    // });
-    // await pr.hide();
+    ProgressDialog pr = new ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: false);
+    pr.style(message: "Login...");
+    await pr.show();
+    http.post("http://middleton.000webhostapp.com/stiw2044/php/login_user.php", body: {
+      "email": _email,
+      "password": _password,
+    }).then((res) {
+      print(res.body);
+      if (res.body == "success") {
+        Toast.show(
+          "Login Succes",
+          context,
+          duration: Toast.LENGTH_LONG,
+          gravity: Toast.TOP,
+        );
+        Navigator.push(context,
+            MaterialPageRoute(builder: (BuildContext context) => MainScreen()));
+      } else {
+        Toast.show(
+          "Login failed",
+          context,
+          duration: Toast.LENGTH_LONG,
+          gravity: Toast.TOP,
+        );
+      }
+    }).catchError((err) {
+      print(err);
+    });
+    await pr.hide();
   }
 
   void _onChange(bool value) {
