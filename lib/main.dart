@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:stiw2044_bookworm/book.dart';
+// import 'package:stiw2044_bookworm/bookdetailscreen.dart';
 import 'package:stiw2044_bookworm/borrowbook.dart';
 import 'package:stiw2044_bookworm/exchangebook.dart';
+import 'package:stiw2044_bookworm/profilescreen.dart';
 import 'package:stiw2044_bookworm/sellbook.dart';
 import 'package:stiw2044_bookworm/user.dart';
 
@@ -16,8 +19,8 @@ class App extends StatelessWidget {
 
 class MainScreen extends StatefulWidget {
   final User user;
-
-  const MainScreen({Key key, this.user}) : super(key: key);
+  final Book book;
+  const MainScreen({Key key, this.user, this.book}) : super(key: key);
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -45,44 +48,57 @@ class _MainScreenState extends State<MainScreen> {
                   fontFamily: 'Gill Sans Ultra Bold',
                   color: Colors.white)),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _loadprofile();
+            // NewBook();
+          },
+          child: Icon(
+            Icons.perm_identity,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.orange,
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //ExchangeBook
-            Flexible(
-              child: Card(
-                child: InkWell(
-                  onTap: () => _exchangeBook(),
-                  child: Column(children: [
-                    Container(
-                      height: screenHeight / 6,
-                      width: screenWidth / 0.5,
-                      child: Image.asset(
-                        'assets/images/exchange_book.jpeg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Row(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Exchange Book',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold)),
-                        Text(
-                          ' (**Book is in physical form)',
-                          style: TextStyle(fontSize: 10),
+            // SingleChildScrollView(
+              Flexible(
+                child: Card(
+                  child: InkWell(
+                    onTap: () => _exchangeBook(),
+                    child: Column(children: [
+                      Container(
+                        height: screenHeight / 6,
+                        width: screenWidth / 0.5,
+                        child: Image.asset(
+                          'assets/images/exchange_book.jpeg',
+                          fit: BoxFit.cover,
                         ),
-                      ],
-                    ),
-                    Expanded(
-                      child: Text(
-                          'An activity that allow user to change a book with other parties. If user has interest on a book, user may send request and wait for other parties to respond.'),
-                    ),
-                  ]),
+                      ),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Exchange Book',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          Text(
+                            ' (**Book is in physical form)',
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Text(
+                            'An activity that allow user to change a book with other parties. If user has interest on a book, user may send request and wait for other parties to respond.'),
+                      ),
+                    ]),
+                  ),
                 ),
+                //  ),
               ),
-              //  ),
-            ),
+            
             //SellBook
             Flexible(
               child: Card(
@@ -150,6 +166,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             ),
+            // ),
           ],
         ),
       ),
@@ -157,8 +174,11 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   _exchangeBook() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext context) => ExchangeBook(user: widget.user)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) =>
+                ExchangeBook(user: widget.user)));
   }
 
   _sellBook() {
@@ -169,5 +189,14 @@ class _MainScreenState extends State<MainScreen> {
   _borrowBook() {
     Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) => BorrowBook()));
+  }
+
+  void _loadprofile() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => ProfileScreen(
+                  book: widget.book,
+                )));
   }
 }

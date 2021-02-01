@@ -309,15 +309,15 @@ class _NewBookState extends State<NewBook> {
 
     http.post("http://middleton.000webhostapp.com/stiw2044/php/add_book.php",
         body: {
-          "booktitle": _title,
+          "title": _title,
           "author": _author,
           "publisher": _publisher,
-          "bookedition": _edition,
-          "bookyear": _year,
-          "bookcategory": "for exchange",
+          "year": _year,
+          "edition": _edition,
+          "category": "for exchange",
           "isbn": _isbn,
           "encoded_string": base64Image,
-          "cover": widget.user.email + "-${dateTime.microsecondsSinceEpoch}",
+          "cover": _title + "-${dateTime.microsecondsSinceEpoch}",
           "useremail": widget.user.email,
         }).then((res) {
       print(res.body);
@@ -330,6 +330,7 @@ class _NewBookState extends State<NewBook> {
         );
         Navigator.pop(context);
       } else {
+        // print(res.body+"fail");
         Toast.show(
           "Failed",
           context,

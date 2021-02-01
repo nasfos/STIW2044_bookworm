@@ -1,15 +1,16 @@
 <?php
 include_once("dbconnect.php");
-$bookid = $_POST['BOOKID'];
-$booktitle = $_POST['TITLE'];
-$author = $_POST['AUTHOR'];
-$publisher = $_POST['PUBLISHER'];
-$bookyear = $_POST['YEAR'];
-$bookedition = $_POST['EDITION'];
-$bookcategory = $_POST['CATEGORY'];
-$isbn = $_POST['ISBN'];
-$cover = $_POST['COVER'];
-$useremail = $_POST['USEREMAIL'];
+
+if(isset($_POST['title'])){
+$booktitle = $_POST['title'];
+$author = $_POST['author'];
+$publisher = $_POST['publisher'];
+$bookyear = $_POST['year'];
+$bookedition = $_POST['edition'];
+$bookcategory = $_POST['category'];
+$isbn = $_POST['isbn'];
+$cover = $_POST['cover'];
+$useremail = $_POST['useremail'];
 $encoded_string = $_POST["encoded_string"];
 $status = "Available";
 
@@ -18,7 +19,7 @@ $path = '../images/bookimages/'.$cover.'.jpg';
 $is_written = file_put_contents($path, $decoded_string);
 
 if ($is_written > 0) {
-    $sqlregister = "INSERT INTO BOOK(BOOKID,TITLE,AUTHOR,PUBLISHER,YEAR,EDITION,CATEGORY,ISBN,COVER,USEREMAIL) VALUES('$bookid','$booktitle','$author','$publisher','$bookyear','$bookedition','$bookcategory','$isbn','$cover',$useremail)";
+    $sqlregister = "INSERT INTO BOOK(TITLE,AUTHOR,PUBLISHER,YEAR,EDITION,CATEGORY,ISBN,COVER,USEREMAIL) VALUES('$booktitle','$author','$publisher','$bookyear','$bookedition','$bookcategory','$isbn','$cover',$useremail)";
     if ($conn->query($sqlregister) === TRUE){
         echo "success";
     }else{
@@ -27,5 +28,5 @@ if ($is_written > 0) {
 }else{
     echo "failed";
 }
-
+}
 ?>

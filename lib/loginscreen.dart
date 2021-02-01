@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stiw2044_bookworm/user.dart';
 import 'package:toast/toast.dart';
 import 'main.dart';
 import 'registerscreen.dart';
 import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
+  final User user;
+
+  const LoginPage({Key key, this.user}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -17,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   String _email = "", _password = "";
   SharedPreferences prefs;
   bool _rememberMe = false;
+  // List userList;
 
   @override
   void initState() {
@@ -162,15 +168,27 @@ class _LoginPageState extends State<LoginPage> {
       "password": _password,
     }).then((res) {
       print(res.body);
-      if (res.body == "success") {
+      List userList = res.body.split(",");
+      if (userList[0] == "success") {
         Toast.show(
-          "Login Succes",
+          "Login Success",
           context,
           duration: Toast.LENGTH_LONG,
           gravity: Toast.TOP,
         );
+
+        User user = new User(
+          name: userList[1],
+          email: _email,
+          phone: userList[2],
+          password: _password,
+          // name: userList[1],
+          // phone: userList[2],
+          datereg: userList[3]
+        );
+
         Navigator.push(context,
-            MaterialPageRoute(builder: (BuildContext context) => MainScreen()));
+            MaterialPageRoute(builder: (BuildContext context) => MainScreen(user: user,)));
       } else {
         Toast.show(
           "Login failed",

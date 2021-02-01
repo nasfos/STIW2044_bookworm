@@ -1,6 +1,6 @@
 class Book{
 
-String bookid, booktitle, author, year, edition, category, publisher, isbn, cover, useremail;
+String bookid, booktitle, author, year, edition, category, publisher, isbn, cover, dateadd, useremail;
 
   Book({
     this.bookid,
@@ -12,6 +12,7 @@ String bookid, booktitle, author, year, edition, category, publisher, isbn, cove
     this.category,
     this.isbn,
     this.cover,
+    this.dateadd,
     this.useremail,
   });
 
