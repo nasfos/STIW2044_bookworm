@@ -4,13 +4,16 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:stiw2044_bookworm/book.dart';
+import 'package:stiw2044_bookworm/exchangedetail.dart';
 import 'package:stiw2044_bookworm/user.dart';
 import 'package:toast/toast.dart';
 
 class NewBook extends StatefulWidget {
   final User user;
+  final Book book;
 
-  const NewBook({Key key, this.user}) : super(key: key);
+  const NewBook({Key key, this.user, this.book}) : super(key: key);
 
   @override
   _NewBookState createState() => _NewBookState();
@@ -155,7 +158,7 @@ class _NewBookState extends State<NewBook> {
                           borderRadius: BorderRadius.circular(20.0)),
                       minWidth: MediaQuery.of(context).size.width / 3,
                       height: 50,
-                      child: Text('Add'),
+                      child: Text('Next'),
                       color: Color.fromRGBO(255, 148, 48, 1),
                       textColor: Colors.white,
                       elevation: 15,
@@ -329,6 +332,13 @@ class _NewBookState extends State<NewBook> {
           gravity: Toast.TOP,
         );
         Navigator.pop(context);
+        // Navigator.push(
+        // context,
+        // MaterialPageRoute(
+        //     builder: (BuildContext context) => AddExchangeBookDetails(
+        //           user: widget.user,
+        //           book: widget.book,
+        //         )));
       } else {
         // print(res.body+"fail");
         Toast.show(

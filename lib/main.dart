@@ -38,39 +38,53 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
+    Color gradientStart = Colors.orange; //Change start gradient color here
+    Color gradientEnd = Color.fromRGBO(191, 87, 31, 1);
     return SafeArea(
       child: Scaffold(
+        // backgroundColor: Colors.orange,
+        
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: Colors.orange,
           title: Text('Home',
               style: TextStyle(
                   fontSize: 20,
                   fontFamily: 'Gill Sans Ultra Bold',
                   color: Colors.white)),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.perm_identity,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                _loadprofile();
+              },
+            )
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _loadprofile();
-            // NewBook();
-          },
-          child: Icon(
-            Icons.perm_identity,
-            color: Colors.white,
-          ),
-          backgroundColor: Colors.orange,
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            //ExchangeBook
-            // SingleChildScrollView(
+        body: Container(
+          decoration: new BoxDecoration(
+            gradient: new LinearGradient(colors: [gradientEnd,gradientStart],
+                // begin: const FractionalOffset(0.5, 0.0),
+                begin: Alignment.bottomCenter,
+                end: Alignment.topRight,
+                stops: [0.0,1.0],
+                tileMode: TileMode.clamp
+            )),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 20),
+              //ExchangeBook
               Flexible(
                 child: Card(
                   child: InkWell(
                     onTap: () => _exchangeBook(),
                     child: Column(children: [
                       Container(
-                        height: screenHeight / 6,
+                        height: screenHeight / 5,
                         width: screenWidth / 0.5,
                         child: Image.asset(
                           'assets/images/exchange_book.jpeg',
@@ -80,6 +94,7 @@ class _MainScreenState extends State<MainScreen> {
                       Row(
                         // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          
                           Text('Exchange Book',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold)),
@@ -98,76 +113,43 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 //  ),
               ),
-            
-            //SellBook
-            Flexible(
-              child: Card(
-                child: InkWell(
-                  onTap: () => _sellBook(),
-                  child: Column(children: [
-                    Container(
-                      height: screenHeight / 6,
-                      width: screenWidth / 0.5,
-                      child: Image.asset(
-                        'assets/images/sell_book.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Row(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Book for Sale',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold)),
-                        Text(
-                          ' (**Book is in physical form)',
-                          style: TextStyle(fontSize: 10),
+              SizedBox(height: 15),
+              //SellBook
+              Flexible(
+                child: Card(
+                  child: InkWell(
+                    onTap: () => _sellBook(),
+                    child: Column(children: [
+                      Container(
+                        height: screenHeight / 5,
+                        width: screenWidth / 0.5,
+                        child: Image.asset(
+                          'assets/images/sell_book.jpg',
+                          fit: BoxFit.cover,
                         ),
-                      ],
-                    ),
-                    Expanded(
-                        child: Text(
-                            'An activity that allow user to sell or buy book. A book can be new or used book. ')),
-                  ]),
+                      ),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Book for Sale',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          Text(
+                            ' (**Book is in physical form)',
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                          child: Text(
+                              'An activity that allow user to sell or buy book. A book can be new or used book. ')),
+                    ]),
+                  ),
                 ),
               ),
-              //  ),
-            ),
-            //BorrowBook
-            Flexible(
-              child: Card(
-                child: InkWell(
-                  onTap: () => _borrowBook(),
-                  child: Column(children: [
-                    Container(
-                      height: screenHeight / 6,
-                      width: screenWidth / 0.5,
-                      child: Image.asset(
-                        'assets/images/borrow_book.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Row(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Borrow Book',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold)),
-                        Text(
-                          ' (**Book is in physical form)',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                        child: Text(
-                            'An activity that allow user to borrow book among UUM students. In this section, user need to select date and time to borrow book.')),
-                  ]),
-                ),
-              ),
-            ),
-            // ),
-          ],
+              SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
@@ -197,6 +179,7 @@ class _MainScreenState extends State<MainScreen> {
         MaterialPageRoute(
             builder: (BuildContext context) => ProfileScreen(
                   book: widget.book,
+                  user: widget.user,
                 )));
   }
 }

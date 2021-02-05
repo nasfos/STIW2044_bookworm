@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:stiw2044_bookworm/book.dart';
 import 'package:stiw2044_bookworm/bookdetailscreen.dart';
 import 'package:stiw2044_bookworm/newbook.dart';
+import 'package:stiw2044_bookworm/profilescreen.dart';
 import 'package:stiw2044_bookworm/user.dart';
 
 class App extends StatelessWidget {
@@ -68,6 +69,17 @@ class _ExchangeBookState extends State<ExchangeBook> {
                   fontSize: 20,
                   fontFamily: 'Gill Sans Ultra Bold',
                   color: Colors.white)),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.perm_identity,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                _loadprofile();
+              },
+            )
+          ],
           // leading: Container(),
         ),
         floatingActionButton: FloatingActionButton(
@@ -197,19 +209,32 @@ class _ExchangeBookState extends State<ExchangeBook> {
 
   _loadBookDetail(int index) {
     Book book = new Book(
-        bookid: bookList[index]['bookid'],
-        booktitle: bookList[index]['title'],
-        author: bookList[index]['author'],
-        publisher: bookList[index]['publisher'],
-        isbn: bookList[index]['isbn'],
-        cover: bookList[index]['cover'],
-        category: bookList[index]['category'],);
+      bookid: bookList[index]['bookid'],
+      booktitle: bookList[index]['title'],
+      author: bookList[index]['author'],
+      publisher: bookList[index]['publisher'],
+      isbn: bookList[index]['isbn'],
+      cover: bookList[index]['cover'],
+      category: bookList[index]['category'],
+      useremail: bookList[index]['useremail'],
+    );
 
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (BuildContext context) => BookDetails(
+                  user: widget.user,
                   book: book,
+                )));
+  }
+
+  void _loadprofile() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => ProfileScreen(
+                  book: widget.book,
+                  user: widget.user,
                 )));
   }
 }

@@ -182,8 +182,6 @@ class _LoginPageState extends State<LoginPage> {
           email: _email,
           phone: userList[2],
           password: _password,
-          // name: userList[1],
-          // phone: userList[2],
           datereg: userList[3]
         );
 
