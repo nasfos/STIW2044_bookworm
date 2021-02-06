@@ -2,9 +2,12 @@
 error_reporting(0);
 include_once("dbconnect.php");
 $category = "for exchange";
-// $type = $_POST['type'];
 
-$sql = "SELECT * FROM BOOK WHERE CATEGORY = '$category'"; 
+$sql = "SELECT BOOK.BOOKID, BOOK.TITLE, BOOK.AUTHOR, BOOK.PUBLISHER, BOOK.YEARS, BOOK.EDITION, BOOK.CATEGORY, BOOK.ISBN, BOOK.COVER, BOOK.DATEADD, BOOK.USEREMAIL, EXCHANGEBOOK.QUANTITY, EXCHANGEBOOK.VALUE, EXCHANGEBOOK.SIZE, EXCHANGEBOOK.STATUS, EXCHANGEBOOK.ORIGINALITY
+        FROM BOOK 
+        INNER JOIN EXCHANGEBOOK ON BOOK.BOOKID = EXCHANGEBOOK.BOOKID  
+        WHERE CATEGORY = '$category'"; 
+        
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
