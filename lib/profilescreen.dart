@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:stiw2044_bookworm/book.dart';
 import 'package:stiw2044_bookworm/bookdetailscreen.dart';
+import 'package:stiw2044_bookworm/changepassword.dart';
 import 'package:stiw2044_bookworm/main.dart';
 import 'package:stiw2044_bookworm/user.dart';
 
@@ -71,7 +72,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      
                       children: [
                         IconButton(
                           icon: Icon(
@@ -80,7 +80,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           iconSize: 25,
                           onPressed: () {
-                            print("change password");
+                            print('change password');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        ChangePassword(user: widget.user)));
                           },
                         ),
                         IconButton(
@@ -115,13 +120,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Icons.home_outlined,
                             color: Colors.white,
                           ),
-                          
                           iconSize: 25,
                           onPressed: () {
                             _loadhome();
                           },
                         ),
-                        
+
                         // Text("Name",style: TextStyle(fontSize: 20,color: Colors.white),),
                       ],
                     ),
@@ -281,7 +285,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         context,
         MaterialPageRoute(
             builder: (BuildContext context) => BookDetails(
-              user: widget.user,
+                  user: widget.user,
                   book: book,
                 )));
   }
@@ -318,7 +322,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         context,
         MaterialPageRoute(
             builder: (BuildContext context) => MainScreen(
-              user: widget.user,
+                  user: widget.user,
                 )));
   }
 }

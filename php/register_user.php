@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 include_once ("dbconnect.php");
 
 if(isset($_POST['name'])){
@@ -9,7 +8,6 @@ $phone = $_POST['phone'];
 $password = sha1($_POST['password']);
 $otp = rand(1000,9999);
 
-// if ($is_written > 0) {
     $sqlinsert = "INSERT INTO USER(NAME,EMAIL,PHONE,PASSWORD,OTP) VALUES ('$name','$email','$phone','$password','$otp')";
     if ($conn->query($sqlinsert) === TRUE){
         sendEmail($otp,$email);
@@ -17,9 +15,6 @@ $otp = rand(1000,9999);
     }else {
         echo "failed";
     }
-// }else{
-//     echo "Upload Failed";
-// }
 }
 
 function sendEmail($otp,$email){

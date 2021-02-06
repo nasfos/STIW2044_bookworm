@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:stiw2044_bookworm/book.dart';
+import 'package:stiw2044_bookworm/bookdetails1.dart';
 import 'package:stiw2044_bookworm/bookdetailscreen.dart';
 import 'package:stiw2044_bookworm/newbook.dart';
 import 'package:stiw2044_bookworm/profilescreen.dart';
@@ -22,7 +23,8 @@ class App extends StatelessWidget {
 class ExchangeBook extends StatefulWidget {
   final User user;
   final Book book;
-  const ExchangeBook({Key key, this.user, this.book}) : super(key: key);
+  final BookDetails1 bookdets;
+  const ExchangeBook({Key key, this.user, this.book, this.bookdets}) : super(key: key);
 
   @override
   _ExchangeBookState createState() => _ExchangeBookState();
@@ -80,12 +82,10 @@ class _ExchangeBookState extends State<ExchangeBook> {
               },
             )
           ],
-          // leading: Container(),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             _addbookform();
-            // NewBook();
           },
           child: Icon(
             Icons.add,
@@ -112,7 +112,6 @@ class _ExchangeBookState extends State<ExchangeBook> {
                             child: Card(
                               child: InkWell(
                                 onTap: () => _loadBookDetail(index),
-                                // child: SingleChildScrollView(
                                 child: Column(
                                   children: [
                                     Container(
@@ -133,10 +132,6 @@ class _ExchangeBookState extends State<ExchangeBook> {
                                     SizedBox(height: 5),
                                     Expanded(
                                       child: Column(
-                                        // mainAxisAlignment:
-                                        //     MainAxisAlignment.start,
-                                        // crossAxisAlignment:
-                                        //     CrossAxisAlignment.start,
                                         children: [
                                           Center(
                                             child: Text(

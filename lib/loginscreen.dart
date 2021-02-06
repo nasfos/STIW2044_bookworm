@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stiw2044_bookworm/changepassword.dart';
 import 'package:stiw2044_bookworm/user.dart';
 import 'package:toast/toast.dart';
 import 'main.dart';
@@ -214,6 +215,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _onForgot() {
+    // widget.user.email = _emcontroller.text;
     print("Forgot");
   }
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stiw2044_bookworm/book.dart';
 // import 'package:stiw2044_bookworm/bookdetailscreen.dart';
-import 'package:stiw2044_bookworm/borrowbook.dart';
 import 'package:stiw2044_bookworm/exchangebook.dart';
 import 'package:stiw2044_bookworm/profilescreen.dart';
 import 'package:stiw2044_bookworm/sellbook.dart';
@@ -166,11 +165,6 @@ class _MainScreenState extends State<MainScreen> {
   _sellBook() {
     Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) => SellBook()));
-  }
-
-  _borrowBook() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext context) => BorrowBook()));
   }
 
   void _loadprofile() {
