@@ -14,6 +14,11 @@ String bookid, booktitle, author, year, edition, category, publisher, isbn, cove
     this.cover,
     this.dateadd,
     this.useremail,
+    // this.quantity,
+    // this.value,
+    // this.size,
+    // this.status,
+    // this.originality,
   });
 
 }

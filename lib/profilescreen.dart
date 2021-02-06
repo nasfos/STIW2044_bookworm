@@ -6,6 +6,7 @@ import 'package:stiw2044_bookworm/book.dart';
 import 'package:stiw2044_bookworm/bookdetailscreen.dart';
 import 'package:stiw2044_bookworm/changepassword.dart';
 import 'package:stiw2044_bookworm/main.dart';
+import 'package:stiw2044_bookworm/notibox.dart';
 import 'package:stiw2044_bookworm/user.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -53,6 +54,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
       title: 'BOOKWORM',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     // _addbookform();
+        //     Navigator.push(
+        // context,
+        // MaterialPageRoute(
+        //     builder: (BuildContext context) => NotiBox(
+        //           user: widget.user,
+        //           book: widget.book,
+        //         )));
+        //   },
+        //   child: Icon(
+        //     Icons.add,
+        //     color: Colors.white,
+        //   ),
+        //   backgroundColor: Colors.orange,
+        // ),
         appBar: PreferredSize(
           preferredSize: Size(double.infinity, 200),
           child: Container(

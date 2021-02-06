@@ -44,8 +44,6 @@ class _AddExchangeBookDetailsState extends State<AddExchangeBookDetails> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                // Text("Bookid" + widget.book.bookid),
-                // Text("user email" + widget.book.useremail),
                 SizedBox(
                   height: 10,
                 ),
@@ -76,7 +74,6 @@ class _AddExchangeBookDetailsState extends State<AddExchangeBookDetails> {
                     ),
                   ],
                 ),
-                // Text("Bookid" + selectedQty.toString()),
                 SizedBox(
                   height: 10,
                 ),
@@ -107,13 +104,11 @@ class _AddExchangeBookDetailsState extends State<AddExchangeBookDetails> {
                     ),
                   ],
                 ),
-                // Text("Bookid" + selectedVal.toString()),
                 SizedBox(
                   height: 10,
                 ),
                 TextField(
                     controller: _sizecontroller,
-                    // keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText:
                           'Size of book (Eg: A4 / B5 / Textbook / 2in1 / dll)',
@@ -123,7 +118,6 @@ class _AddExchangeBookDetailsState extends State<AddExchangeBookDetails> {
                 ),
                 TextField(
                     controller: _originalitycontroller,
-                    // keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText:
                           'Originality of book (Eg: Original Textbook / Original Photocopy / Used Book)',
@@ -146,7 +140,6 @@ class _AddExchangeBookDetailsState extends State<AddExchangeBookDetails> {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      // onPressed: _addbook,
                     ),
                     SizedBox(
                       width: 5,
@@ -161,9 +154,6 @@ class _AddExchangeBookDetailsState extends State<AddExchangeBookDetails> {
                       textColor: Colors.white,
                       elevation: 15,
                       onPressed: _addbook,
-                      // onPressed: () {
-                      //   Navigator.of(context).pop();
-                      // },
                     ),
                   ],
                 ),
@@ -209,14 +199,7 @@ class _AddExchangeBookDetailsState extends State<AddExchangeBookDetails> {
           gravity: Toast.TOP,
         );
         Navigator.pop(context);
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (BuildContext context) => ExchangeBook(
-        //               user: widget.user,
-                    // )));
       } else {
-        // print(res.body+"fail");
         Toast.show(
           "Failed",
           context,

@@ -39,13 +39,11 @@ class _NewBookState extends State<NewBook> {
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
         primarySwatch: Colors.orange,
-        // fontFamily: 'Gill Sans Ultra Bold',
       ),
       home: Scaffold(
         appBar: AppBar(
           title: Text('Add New Book',style: TextStyle(color: Colors.white, fontFamily: 'Gill Sans Ultra Bold'),),
         ),
-        // body: Center(
         body: Container(
           padding: EdgeInsets.all(20.0),
           child: SingleChildScrollView(
@@ -66,10 +64,6 @@ class _NewBookState extends State<NewBook> {
                               : FileImage(_image),
                           fit: BoxFit.cover,
                         ),
-                        // border: Border.all(
-                        //   width: 3.0,
-                        //   color: Colors.grey,
-                        // ),
                         borderRadius: BorderRadius.all(Radius.circular(
                                 5.0) //         <--- border radius here
                             ),
@@ -80,7 +74,6 @@ class _NewBookState extends State<NewBook> {
                 ),
                 TextField(
                     controller: _titlecontroller,
-                    // keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Title',
                     )),
@@ -89,7 +82,6 @@ class _NewBookState extends State<NewBook> {
                 ),
                 TextField(
                     controller: _authorcontroller,
-                    // keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Author',
                     )),
@@ -98,7 +90,6 @@ class _NewBookState extends State<NewBook> {
                 ),
                 TextField(
                     controller: _publishercontroller,
-                    // keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Publisher',
                     )),
@@ -107,7 +98,6 @@ class _NewBookState extends State<NewBook> {
                 ),
                 TextField(
                     controller: _editioncontroller,
-                    // keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Edition',
                     )),
@@ -116,7 +106,6 @@ class _NewBookState extends State<NewBook> {
                 ),
                 TextField(
                     controller: _yearcontroller,
-                    // keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Year',
                     )),
@@ -125,14 +114,12 @@ class _NewBookState extends State<NewBook> {
                 ),
                 TextField(
                     controller: _isbncontroller,
-                    // keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'ISBN',
                     )),
                 SizedBox(
                   height: 10,
                 ),
-                // Center(
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -148,7 +135,6 @@ class _NewBookState extends State<NewBook> {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      // onPressed: _addbook,
                     ),
                     SizedBox(
                       width: 5,
@@ -163,9 +149,6 @@ class _NewBookState extends State<NewBook> {
                       textColor: Colors.white,
                       elevation: 15,
                       onPressed: _addbook,
-                      // onPressed: () {
-                      //   Navigator.of(context).pop();
-                      // },
                     ),
                   ],
                 ),
@@ -332,15 +315,7 @@ class _NewBookState extends State<NewBook> {
           gravity: Toast.TOP,
         );
         Navigator.pop(context);
-        // Navigator.push(
-        // context,
-        // MaterialPageRoute(
-        //     builder: (BuildContext context) => AddExchangeBookDetails(
-        //           user: widget.user,
-        //           book: widget.book,
-        //         )));
       } else {
-        // print(res.body+"fail");
         Toast.show(
           "Failed",
           context,

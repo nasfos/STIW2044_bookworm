@@ -32,7 +32,7 @@ class ExchangeBook extends StatefulWidget {
 
 class _ExchangeBookState extends State<ExchangeBook> {
   String titlecenter = "No book found";
-  List bookList;
+  List bookList,bookdetList;
   double screenHeight = 0.00, screenWidth = 0.00;
 
   var flex1 = new Container(
@@ -208,9 +208,12 @@ class _ExchangeBookState extends State<ExchangeBook> {
       booktitle: bookList[index]['title'],
       author: bookList[index]['author'],
       publisher: bookList[index]['publisher'],
+      year: bookList[index]['years'],
+      edition: bookList[index]['edition'],
+      category: bookList[index]['category'],
       isbn: bookList[index]['isbn'],
       cover: bookList[index]['cover'],
-      category: bookList[index]['category'],
+      dateadd: bookList[index]['dateadd'],
       useremail: bookList[index]['useremail'],
     );
 
@@ -220,6 +223,7 @@ class _ExchangeBookState extends State<ExchangeBook> {
             builder: (BuildContext context) => BookDetails(
                   user: widget.user,
                   book: book,
+                  // bookdets1: bookdets1,
                 )));
   }
 
